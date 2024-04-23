@@ -19,6 +19,12 @@ class SpiMaster extends Module {
   import State._
   val state = RegInit(idle)
 
+  spi.ncs := 0.U
+  spi.sclk := 0.U
+  spi.mosi := 0.U
+
+  io.dataOut := 0.U
+
 }
 
 object SpiMaster extends App {
