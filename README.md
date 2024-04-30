@@ -1,6 +1,6 @@
-# spi
+# SPI
 
-An almost empty chisel project as a starting point for hardware design.
+Play with SPI devices.
 
 See the `Makefile` for the hardware and test targets.
 
@@ -30,6 +30,7 @@ set_property PACKAGE_PIN H2 [get_ports io_MISO]
 
  * https://github.com/YosysHQ/picorv32/blob/main/picosoc/spiflash.v
  * https://www.cypress.com/verilog/s25fl256s-verilog (results in a .exe to expand)
+   * see also: https://github.com/pulp-platform/pulp/tree/master/rtl/vip/spi_flash
  * https://www.infineon.com/cms/en/product/memories/nor-flash/semper-nor-flash-family/semper-nor-flash/?gad_source=1&gclid=Cj0KCQjwlZixBhCoARIsAIC745BlF0r2uRRUs_tH-uFewg_eQ0zYvxKVwG_Ea77YYKOk0AGSk2u4oVQaAmdSEALw_wcB&gclsrc=aw.ds#!designsupport
 
 ### Other Stuff
@@ -42,5 +43,8 @@ set_property PACKAGE_PIN H2 [get_ports io_MISO]
 ## TODO
 
  * Connect Arduino and/or ESP32
- * Is there a SPI simulation model? Maybe from Microhip?
+   * https://www.mouser.lu/new/adafruit/adafruit-huzzah32-esp32-dev-boards/
+ * Are there better SPI simulation models? Those working with Verilator?
  * Could this be a good example for cosimulation (UVM like?)
+ * Can I boot from a microSD card, just in hardware?
+ * Do bit banging via serial port to SPI on the FPGA (PMOD)
