@@ -26,7 +26,7 @@ set_property PACKAGE_PIN H2 [get_ports io_MISO]
  * Interesting IO boards: https://www.mikroe.com/flash-2-click
  * Slave implementation: https://github.com/nandland/spi-slave/blob/master/Verilog/source/SPI_Slave.v
 
-### Simlation Models
+### Simulation Models
 
  * https://github.com/YosysHQ/picorv32/blob/main/picosoc/spiflash.v
  * https://www.cypress.com/verilog/s25fl256s-verilog (results in a .exe to expand)
@@ -48,3 +48,6 @@ set_property PACKAGE_PIN H2 [get_ports io_MISO]
  * Could this be a good example for cosimulation (UVM like?)
  * Can I boot from a microSD card, just in hardware?
  * Do bit banging via serial port to SPI on the FPGA (PMOD)
+ * I can explore more SPI on the Nexys:
+   * SD micro connector
+   * Accelerometer
