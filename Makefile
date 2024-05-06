@@ -26,6 +26,9 @@ config:
 screen:
 	screen /dev/cu.usbserial-210292B408601 115200
 
+# terminat screen: https://www.techcoil.com/blog/how-to-terminate-screen-terminal-sessions-cleanly-on-macos/
+# ctrl+A+D, screen -list, screen -X -S 12345 quit
+
 clean:
 	git clean -fd
 
