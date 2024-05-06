@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.util._
+import chisel.lib.uart._
 
 /**
   * This is the top level to for the UART output and a test blinking LED.
@@ -9,10 +10,21 @@ class BitBang(frequ: Int) extends Module {
     val rx = Input(Bool())
     val tx = Output(Bool())
     val sw = Input(UInt(4.W))
-    val led = Output(UInt(8.W))
+    val led = Output(UInt(4.W))
   })
-  io.tx := io.rx
-  io.led := 55.U ## io.sw
+  io.led := io.sw
+
+  val tx = Module(new BufferedTx(100000000, 115200))
+  val rx = Module(new Rx(100000000, 115200))
+
+  io.tx := tx.io.txd
+  rx.io.rxd := io.rx
+
+  tx.io.channel.bits := '0'.U + io.sw
+  tx.io.channel.valid := rx.io.channel.valid
+  rx.io.channel.ready := true.B
+  val regVal = RegEnable('0'.U + rx.io.channel.bits(3, 0), rx.io.channel.valid)
+  io.led := regVal
 }
 
 // generate Verilog
