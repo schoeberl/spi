@@ -11,6 +11,10 @@ class BitBang(frequ: Int) extends Module {
     val tx = Output(Bool())
     val sw = Input(UInt(4.W))
     val led = Output(UInt(4.W))
+    val ncs = Output(Bool()) // pmod 4, ic 1
+    val miso = Input(Bool()) // pmod 3, ic 2
+    val mosi = Output(Bool()) // pmod 2, ic 5
+    val sck = Output(Bool()) // pmod 1, ic 6
   })
   io.led := io.sw
 
@@ -24,7 +28,11 @@ class BitBang(frequ: Int) extends Module {
   tx.io.channel.valid := rx.io.channel.valid
   rx.io.channel.ready := true.B
   val regVal = RegEnable('0'.U + rx.io.channel.bits(3, 0), rx.io.channel.valid)
-  io.led := regVal
+  io.led := io.miso ## regVal(2, 0)
+
+  io.sck := regVal(0)
+  io.mosi := regVal(1)
+  io.ncs := regVal(2)
 }
 
 // generate Verilog
